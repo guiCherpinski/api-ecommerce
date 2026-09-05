@@ -39,6 +39,6 @@ public class Clientes {
     private String cpf;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "enderecos")
+    @JoinColumn(name = "endereco_id")
     private Enderecos enderecos;
 }
