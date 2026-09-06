@@ -2,6 +2,7 @@ package com.dev.api_ecommerce.mapper;
 
 import com.dev.api_ecommerce.dto.ClienteRequest;
 import com.dev.api_ecommerce.dto.ClienteResponse;
+import com.dev.api_ecommerce.dto.ClienteUpdate;
 import com.dev.api_ecommerce.entity.Cliente;
 import com.dev.api_ecommerce.entity.Enderecos;
 import java.util.*;
@@ -31,5 +32,17 @@ public class ClienteMapper {
 
     public List<ClienteResponse> toResponseList (List<Cliente> clientes){
         return clientes.stream().map(this :: toResponse).toList();
+    }
+
+    public Cliente update (Cliente entity , ClienteUpdate update){
+        if(update.nome() != null){
+            entity.setNome(update.nome());
+        }
+
+        if (update.email() != null){
+            entity.setEmail(update.email());
+        }
+
+        return entity;
     }
 }

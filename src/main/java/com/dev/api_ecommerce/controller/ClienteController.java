@@ -3,6 +3,7 @@ package com.dev.api_ecommerce.controller;
 import com.dev.api_ecommerce.Service.ClienteService;
 import com.dev.api_ecommerce.dto.ClienteRequest;
 import com.dev.api_ecommerce.dto.ClienteResponse;
+import com.dev.api_ecommerce.dto.ClienteUpdate;
 import com.dev.api_ecommerce.entity.Cliente;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -32,6 +33,11 @@ public class ClienteController {
     @GetMapping("/{id}")
     public ResponseEntity<ClienteResponse> buscarClientePorId(@PathVariable Long id){
         return ResponseEntity.ok(clienteService.buscarClientePorId(id));
+    }
+
+    @PatchMapping("/{id}")
+    public ResponseEntity<ClienteResponse> atualizarCliente(@PathVariable Long id ,@RequestBody ClienteUpdate cliente){
+        return ResponseEntity.ok(clienteService.atualizarCliente(id,cliente));
     }
 
 

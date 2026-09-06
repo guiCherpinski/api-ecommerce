@@ -2,6 +2,7 @@ package com.dev.api_ecommerce.Service;
 
 import com.dev.api_ecommerce.dto.ClienteRequest;
 import com.dev.api_ecommerce.dto.ClienteResponse;
+import com.dev.api_ecommerce.dto.ClienteUpdate;
 import com.dev.api_ecommerce.entity.Cliente;
 import com.dev.api_ecommerce.entity.Enderecos;
 import com.dev.api_ecommerce.mapper.ClienteMapper;
@@ -48,5 +49,16 @@ public class ClienteService {
 
         Cliente entity = clienteRepository.findById(id).orElseThrow(() -> new RuntimeException("erro - id não encontrado"));
         return clienteMapper.toResponse(entity);
+    }
+
+    public ClienteResponse atualizarCliente(Long id, ClienteUpdate clienteUpdate){
+        if (!clienteRepository.existsById(id)) {
+            throw new RuntimeException("erro - cliente inexistente");
+        }
+
+        Cliente entity = clienteRepository.findById(id).orElseThrow(() -> new RuntimeException("erro - cliente inexistente"));
+        Cliente entityUpdate = clienteMapper.update(entity, clienteUpdate);
+        clienteRepository.save(entityUpdate);
+        return clienteMapper.toResponse(entityUpdate);
     }
 }
