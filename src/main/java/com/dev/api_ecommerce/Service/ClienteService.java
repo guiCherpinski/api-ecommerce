@@ -61,4 +61,13 @@ public class ClienteService {
         clienteRepository.save(entityUpdate);
         return clienteMapper.toResponse(entityUpdate);
     }
+
+    public String removerCliente(Long id){
+        if (!clienteRepository.existsById(id)) {
+            throw new RuntimeException("erro - cliente inexistente");
+        }
+
+        clienteRepository.deleteById(id);
+        return "cliente removido com sucesso";
+    }
 }
