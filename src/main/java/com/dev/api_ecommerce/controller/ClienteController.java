@@ -1,6 +1,12 @@
 package com.dev.api_ecommerce.controller;
 
 import com.dev.api_ecommerce.Service.ClienteService;
+import com.dev.api_ecommerce.dto.ClienteRequest;
+import com.dev.api_ecommerce.dto.ClienteResponse;
+import com.dev.api_ecommerce.entity.Cliente;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -12,6 +18,12 @@ public class ClienteController {
 
     public ClienteController(ClienteService clienteService) {
         this.clienteService = clienteService;
+    }
+
+    @PostMapping()
+    public ResponseEntity<ClienteResponse> cadastrarCliente(@RequestBody ClienteRequest cliente){
+        ClienteResponse clienteResponse = clienteService.cadastrarCliente(cliente);
+        return ResponseEntity.ok(clienteResponse);
     }
 
 

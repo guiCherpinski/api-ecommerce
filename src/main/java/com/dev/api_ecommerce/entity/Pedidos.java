@@ -32,5 +32,5 @@ public class Pedidos {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "cliente_id")
-    private Clientes cliente;
+    private Cliente cliente;
 }

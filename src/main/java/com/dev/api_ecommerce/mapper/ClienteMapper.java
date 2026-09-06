@@ -2,7 +2,7 @@ package com.dev.api_ecommerce.mapper;
 
 import com.dev.api_ecommerce.dto.ClienteRequest;
 import com.dev.api_ecommerce.dto.ClienteResponse;
-import com.dev.api_ecommerce.entity.Clientes;
+import com.dev.api_ecommerce.entity.Cliente;
 import com.dev.api_ecommerce.entity.Enderecos;
 import java.util.*;
 import org.springframework.stereotype.Component;
@@ -10,8 +10,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class ClienteMapper {
 
-    public Clientes toEntity (ClienteRequest clienteRequest, Enderecos enderecos){
-        return Clientes.builder()
+    public Cliente toEntity (ClienteRequest clienteRequest, Enderecos enderecos){
+        return Cliente.builder()
                 .nome(clienteRequest.nome())
                 .email(clienteRequest.email())
                 .cpf(clienteRequest.cpf())
@@ -19,7 +19,7 @@ public class ClienteMapper {
                 .build();
     }
 
-    public ClienteResponse toResponse (Clientes cliente){
+    public ClienteResponse toResponse (Cliente cliente){
         return new ClienteResponse(
                 cliente.getId(),
                 cliente.getNome(),
@@ -29,7 +29,7 @@ public class ClienteMapper {
         );
     }
 
-    public List<ClienteResponse> toResponseList (List<Clientes> clientes){
+    public List<ClienteResponse> toResponseList (List<Cliente> clientes){
         return clientes.stream().map(this :: toResponse).toList();
     }
 }
